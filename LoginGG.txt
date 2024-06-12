@@ -1,0 +1,50 @@
+Tải thư viện: composer require laravel/socialite
+
+Tạo 1 project trong API & Service
+https://console.cloud.google.com/projectselector2/apis/dashboard?supportedpurview=project
+
+Ở trong project đó có phần URI de redirection autorisés
+thêm http://127.0.0.1:8000/login/google/callback
+
+Ở trong .services paste 3 dòng này vô
+GOOGLE_CLIENT_ID=điền CLIENT_ID của project đó
+GOOGLE_CLIENT_SECRET=điền CLIENT_SECRET của project đó
+GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/login/google/callback
+
+ở route: 
+//Đăng nhập bằng google
+Route::get('/login/google', [GoogleController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+controller: GoogleController
+//hàm chuyển đến trang GG
+public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+//Hàm lưu vào bảng users
+public function handleGoogleCallback()
+    {
+        // Lấy thông tin người dùng từ Google
+        $user = Socialite::driver('google')->user();
+
+        // Kiểm tra xem người dùng đã tồn tại trong hệ thống hay chưa
+        $existingUser = User::where('email', $user->getEmail())->first();
+
+        if ($existingUser) {
+            // Nếu người dùng đã tồn tại, đăng nhập người dùng
+            Auth::login($existingUser);
+        } else {
+            // Nếu người dùng chưa tồn tại, tạo người dùng mới
+            $newUser = new User();
+            $newUser->name = $user->getName();
+            $newUser->email = $user->getEmail();
+            $newUser->status = 1;
+            $newUser->role = 2;
+            $newUser->save();
+
+            // Đăng nhập người dùng mới tạo
+            Auth::login($newUser);
+        }
+        return redirect()->route('index');
+    }

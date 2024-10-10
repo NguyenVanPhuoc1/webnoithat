@@ -1,0 +1,113 @@
+main{
+    background-color: white;
+    padding-top: 22px;
+}
+
+h1{
+    margin: 0;
+    color: rgba(0, 0, 0, 0.8)   ;
+    text-align: center;
+}
+
+.row .product-item{
+    position: relative;
+    margin: 30px 0  ;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 2px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.product-image {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.product-image img{
+    height: 302px;
+}
+
+.product-name{
+    color: black;
+    font-size: 14px;
+    padding: 10px;
+    white-space: nowrap; /* Ngăn tên sản phẩm xuống dòng */
+    overflow: hidden; /* Ẩn nội dung vượt ra ngoài */
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm (...) nếu tên sản phẩm quá dài */
+}
+
+.product-price {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 255, 0.3);
+    color: white;
+    padding: 10px;
+    transform: translateY(100%);
+    transition: transform 0.2s ease;
+}
+
+.product-image:hover .product-price {
+    transform: translateY(0);
+}
+
+.price-new {
+    font-weight: 700;
+    font-size: 14px;
+    color: #ef4040;
+}
+.price-old {
+    font-weight: 500;
+    color: #6c757d;
+    text-decoration: line-through;
+    padding-left: 10px;
+}
+.price-product, .price-per{
+    font-size: 12px;
+}
+.price-per{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    background: #ef4040;
+    font-size: 11px;
+    border-radius: 2px;
+    width: 45px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+}
+
+.quantity-pro-detail{
+    width: 150px;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+.quantity-pro-detail span {
+    line-height: 25px;
+    padding: 0px;
+    width: 45px;
+    height: 45px;
+    color: #5f5f5f;
+    cursor: pointer;
+    font-size: 22px;
+    border: 1px solid #f3f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f4;
+}
+.quantity-pro-detail span.quantity-minus-pro-detail {
+    border-right: 0px;
+}
+.quantity-pro-detail input {
+    height: 45px;
+    border: 1px solid #f3f4f4;
+    width: calc(100% - 90px);
+    text-align: center;
+    font-size: 14px;
+}

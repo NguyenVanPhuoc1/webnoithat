@@ -1,0 +1,20 @@
+.signup-box{
+    width: 320px;
+}
+.register-page {
+    align-items: center;
+    background: #e9ecef;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+}
+
+/*  */
+.show-password {
+    cursor: pointer;
+    width: 45px;
+    border: #5e5e5e 1px solid !important;
+    padding: .375rem;
+    justify-content: center;
+}

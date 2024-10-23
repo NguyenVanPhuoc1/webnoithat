@@ -20,20 +20,10 @@ class SendMailController extends Controller
     // hàm gửi mail
     public function sendEmail($selectedData,$title, $content) {
         // lấy id thông tin khách cần gửi
-        foreach ($selectedData['selectedIds'] as $cusId) {
-            $user = Customers::find($cusId);
-            // dd($user->email);die();
-            if ($user) {
-                $details = [
-                    'email' => $user->email,
-                    'title' => $title,
-                    'content' => $content,
-                ];
-                // Dispatch job gửi email vào hàng đợi
-                SendEmailJob::dispatch($details);
+        $customers = Customers::whereIn('id', $selectedData['selectedIds'])->get();
 
-            }
-        }
+        // Dispatch job gửi email với tất cả khách hàng
+        SendEmailJob::dispatch($customers, $title, $content);
     }
 
     // hàm lấy dữ liệu

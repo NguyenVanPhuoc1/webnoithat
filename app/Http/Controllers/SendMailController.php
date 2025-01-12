@@ -18,10 +18,7 @@ class SendMailController extends Controller
         return view('admin.qlinhantin',compact('cusList'));
     }
     // hàm gửi mail
-    public function sendEmail($selectedData,$title, $content) {
-        // lấy id thông tin khách cần gửi
-        $customers = Customers::whereIn('id', $selectedData['selectedIds'])->get();
-
+    public function sendEmail($customers, $title, $content) {
         // Dispatch job gửi email với tất cả khách hàng
         SendEmailJob::dispatch($customers, $title, $content);
     }
@@ -29,7 +26,7 @@ class SendMailController extends Controller
     // hàm lấy dữ liệu
     public function selected_data(Request $request){
         $type = $request->input('delete_type', 'single');
-        $selectedIds = $request->input('customer_ids', []);
+        $selectedIds = $request->input('customer_ids', []); 
         $type_click = $request->input('type_click');
         // dd($type_click);die();
         return [
@@ -53,8 +50,10 @@ class SendMailController extends Controller
             ]);
             $title_email = $request->input('title_email');
             $content_email = $request->input('content_email');
+            // Lấy danh sách khách hàng cần gửi ngay trong totalCustomer
+            $customers = Customers::whereIn('id', $selectedIds)->get();
             // dd($title_email);
-            $this->sendEmail($selectedData, $title_email, $content_email);
+            $this->sendEmail($customers, $title_email, $content_email);
         }else{
             //thực hiện xóa
             $this->deleteCustomer($type, $selectedIds);

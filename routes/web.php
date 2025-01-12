@@ -33,10 +33,12 @@ use App\Http\Controllers\PasswordResetController;
 
 Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])->group(function ()  {
   // Các route của bạn ở đây
-  Route::get('/sign-up', [CustomAuthController::class, 'signUp'])->name('sign-up');
-  Route::post('/sign-up', [CustomAuthController::class, 'register'])->name('users.register');
-  Route::get('/login', [CustomAuthController::class, 'Login'])->name('login');
-  Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+  Route::middleware('guest')->group(function () {
+      Route::get('/sign-up', [CustomAuthController::class, 'signUp'])->name('sign-up');
+      Route::post('/sign-up', [CustomAuthController::class, 'register'])->name('users.register');
+      Route::get('/login', [CustomAuthController::class, 'Login'])->name('login');
+      Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+  });
   Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
   Route::get('/login/google', [GoogleController::class, 'redirectToGoogle'])->name('login.google');
   Route::get('/login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -153,12 +155,15 @@ Route::middleware(['auth','admin.access'])->group(function () {
     Route::get('/download-pdf/{id}', [InvoiceController::class, 'download'])->name('download.pdf');
 });
 
-Route::get('/password-reset', [PasswordResetController::class, 'showEmailForm'])->name('password.reset');
-Route::post('/password-reset', [PasswordResetController::class, 'sendOtp']);
-Route::get('/password-reset/otp', [PasswordResetController::class, 'showOtpForm']);
-Route::post('/password-reset/otp', [PasswordResetController::class, 'verifyOtp']);
-Route::get('/password-reset/change', [PasswordResetController::class, 'showChangePasswordForm']);
-Route::post('/password-reset/change', [PasswordResetController::class, 'changePassword']);
+Route::middleware('guest')->group(function () {
+  Route::get('/password-reset', [PasswordResetController::class, 'showEmailForm'])->name('password.reset');
+  Route::post('/password-reset', [PasswordResetController::class, 'sendOtp']);
+  Route::get('/password-reset/otp', [PasswordResetController::class, 'showOtpForm']);
+  Route::post('/password-reset/otp', [PasswordResetController::class, 'verifyOtp']);
+  Route::get('/password-reset/change', [PasswordResetController::class, 'showChangePasswordForm']);
+  Route::post('/password-reset/change', [PasswordResetController::class, 'changePassword']);
+
+});
 
 
 

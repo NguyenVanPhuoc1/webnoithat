@@ -14,7 +14,7 @@ class ChartController extends Controller
     public function viewChart(Request $request){
         $giatri = $request->get('gia_tri');
         $endDate = Carbon::now();
-        $modifiedData = "";
+        $modifiedData = ""; 
         switch($giatri){
             case '7day':
                 $startDate = Carbon::now()->subDays(7);

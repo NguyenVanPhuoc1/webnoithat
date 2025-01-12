@@ -17,9 +17,19 @@ class AdminAccessMiddleware
     public function handle(Request $request, Closure $next)
     {
         // Kiểm tra đường dẫn và quyết định chặn hoặc cho phép truy cập
-        if ($request->is('admin/*')) {
-            // Kiểm tra xác thực người dùng admin ở đây, ví dụ:
-            if (!auth()->check() || !auth()->user()) {
+        if (auth()->check() ) {
+            if(auth()->user()){
+                // chặn user vào admin
+                if(auth()->user()->role !== 1){
+                    if(strpos($request->fullUrl(), 'admin') || strpos($request->fullUrl(), 'login') || strpos($request->fullUrl(), 'register')){
+                        return redirect('/');
+                    }
+                }
+                // if(auth()->user()->role !== 1 && strpos($request->fullUrl(), 'admin')){
+                //     return redirect('/');
+                // }
+            }
+            else if(!auth()->user()){
                 return redirect('/login'); // Hoặc chuyển hướng đến trang khác
             }
         }

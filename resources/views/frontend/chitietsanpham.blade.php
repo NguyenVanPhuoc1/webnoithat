@@ -41,7 +41,10 @@
         }
 
         .next-btn {
-            right: 10px;
+            right: 10px;        
+        }
+        figure img{
+            max-height: 480px!important;
         }
     </style>
 @endsection
@@ -92,10 +95,10 @@
                     <div class="row">
                         <div class="col-12 left-pro-detail col-lg-5 ">
                             <div class="pro-zoom col ">
-                                <a href="{{ asset('front/public/image/'.$product->images->first()->file_name )}}" class="MagicZoom" id="sanpham"
-                                    data-options="zoomMode: on; hint: on; rightClick: true; selectorTrigger: hover; expandCaption: false; history: false;">
-                                    <img id="mainImage" src="{{ asset('front/public/image/'.$product->images->first()->file_name )}}" alt=""
-                                       width: 570px; height: 550px;>
+                                <a href="{{ asset('front/public/image/'.$product->images->first()->file_name )}}" class="MagicZoom" id="sanpham" 
+                                    data-options="zoomMode: on; hint: on; rightClick: true; selectorTrigger: hover; expandCaption: false; history: false;"
+                                    style="min-width: 570px; min-height: 550px;">
+                                    <img id="mainImage" src="{{ asset('front/public/image/'.$product->images->first()->file_name )}}" alt="" style="min-height:550px!important">
                                 </a>
                             </div>
                             <div class="gallery-thumb-pro col">

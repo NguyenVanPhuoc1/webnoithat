@@ -11,13 +11,13 @@
         <form class="login" action="{{route('login.custom')}}" method="post" name="login">
             @csrf
             <!-- <input type="text" name="name" placeholder="Name" required autofocus> -->
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="name" class="form-card-boy-label"><b>Nhập Tên:</b></label>
                 <div class="input-group">
                     <input type="text" name="name" id="name" class="form-control for-seo text-sm"
                             placeholder="Nhập tên :" required autofocus>
                 </div>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="email" class="form-card-boy-label"><b>Nhập Email:</b></label>
                 <div class="input-group">

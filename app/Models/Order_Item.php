@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Order_Item extends Model
 {
     use HasFactory;
-    protected $table = 'order_item';
-    protected $primaryKey ='id';
-    protected $guarded =[];
+        protected $table = 'order_item';
+        protected $primaryKey ='id';
+        protected $guarded =[];
 
     //Mối quan hệ một-một được thiết lập bằng cách sử dụng phương thức hasOne và belongsTo.
     // One-to-Many (Mối quan hệ một-nhiều) Mối quan hệ một-nhiều được thiết lập bằng cách sử dụng phương thức hasMany và belongsTo.

@@ -30,7 +30,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        //dùng try catch để bắt lỗi???
         Mail::to($this->details['email'])->send(new ExampleMail($this->details));
     }
 }

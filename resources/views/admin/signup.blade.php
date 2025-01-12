@@ -3,11 +3,11 @@
 @section('title', 'Đăng Kí Tài Khoản')
 <!-- nội dung -->
 @section('content')
-<!-- particles.js container -->
-<div id="particles-js"></div>
-<!-- Form đăng kí tài khoản -->
-<div class="signup-form register-page">
-    <div class="signup-box">
+    <!-- particles.js container -->
+    <div id="particles-js"></div>
+    
+    <!-- Form đăng kí tài khoản -->
+    <div class="form-tt signup-box">
         <div class="card">
             <div class="card-body ">
                 <h4 class="text-center">Đăng Kí Tài Khoản</h4>
@@ -44,11 +44,6 @@
                         <div class="input-group">
                             <input type="password" name="new-password" id="new-password" class="form-control for-seo text-sm @error('new-password') is-invalid @enderror"
                                 placeholder="Nhập mật khẩu mới :" >
-                            <div class="input-group-append show-password">
-                                <button type="button" class="btn btn-light" id="toggle-new-password">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
                             @error('new-password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -61,11 +56,6 @@
                             <div class="input-group">
                                 <input type="password" name="current-password" id="current-password" class="form-control for-seo text-sm @error('current-password') is-invalid @enderror"
                                     placeholder="Nhập lại mật khẩu :" >
-                                <div class="input-group-append show-password m0-auto">
-                                    <button type="button" class="btn btn-light" id="toggle-current-password">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
                                 <!-- báo lỗi -->
                                 @error('current-password')
                                     <div class="invalid-feedback">
@@ -82,11 +72,10 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Hiển thị Thông báo khi đăng nhập sai -->
+    <!-- Hiển thị Thông báo khi đăng nhập sai -->
 
-@if (session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
-@endif
+    @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
 
 @endsection

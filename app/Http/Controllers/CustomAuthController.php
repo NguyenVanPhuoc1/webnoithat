@@ -23,16 +23,16 @@ class CustomAuthController extends Controller
     public function customLogin(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            // 'name' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
    
-        $credentials = $request->only('name','email','password');
+        $credentials = $request->only('email','password');
         // dd(Auth::attempt($credentials));die();
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            $id_admin = $user->name;
+            // $id_admin = $user->name;
             $role = $user->role;
             
             session()->put('id_admin', $user);
@@ -65,7 +65,7 @@ class CustomAuthController extends Controller
             'renew-password' => 'required|string|same:new-password',
         ]);
 
-        $user = User::where('id',session('id_admin')->id)->get();
+        $user = User::where('id',session('id_admin.id'))->get();
         // dd(request()->input('old-password'));die();
         if (!Hash::check(request()->input('old-password'), $user[0]['password'])) {
             return redirect()->back()->with('error', 'Mật khẩu hiện tại bạn nhập không đúng');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,10 @@ class HomeController extends Controller
         // $favicon_name = Favicon::latest('created_at')->first()->file_name;
 
         $category = $this->getCategory();
+        if(session('is_admin.role') === 1){ 
+            session()->flush();
+            Auth::logout();
+        }
         
         return view('frontend.trangchu',compact('category'));
     }

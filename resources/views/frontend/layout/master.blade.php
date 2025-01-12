@@ -119,9 +119,9 @@
                             <!-- Account -->
                             <div class="dropdown account_user  mx-3">
                                 <!-- Button trigger dropdown -->
-                                @if(session()->has('id_admin') )
+                                @if(session()->has('id_admin') && session('id_admin')-> role != 1)
                                 <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa-solid fa-user"></i> {{session('id_admin')->name}}
+                                    <i class="fa-solid fa-user"></i> {{session('id_admin.name')}}
                                 </a>
                                 @else
                                 <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

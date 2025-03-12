@@ -3,6 +3,7 @@
 ## Introduction
 
 This project uses [Laravel](https://laravel.com/) for the backend (version:10x),  [Mysql] for save database. It is a web application designed to user can sign in(user, google) and can view and sell product.User can add product to cart and payment with vnpay and Payos.Version 2.0 introduces a complete refactor of the codebase, adopting dependency injection and object-oriented programming (OOP) principles.
+![screenshot_1741766797](https://github.com/user-attachments/assets/9e7ce2ba-4006-4033-aaac-3a464c7eb4f5)
 
 ## Libraries and Tools
 ### Frontend Libraries
